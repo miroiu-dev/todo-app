@@ -12,6 +12,7 @@ build2/
 remote-repo/
 coverage/
 .module-cache
+.eslintcache
 fixtures/dom/public/react-dom.js
 fixtures/dom/public/react.js
 test/the-files-to-test.generated.js
