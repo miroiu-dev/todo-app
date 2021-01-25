@@ -4,17 +4,28 @@ import AddTodo from './AddTodo';
 import clsx from 'clsx';
 import './css/todoapp.css';
 
-let counter = 4;
+let counter = 3;
 
-const initialTasks = Array.from({ length: 4 }).map((_, i) => {
-	return {
-		id: i,
-		title: 'Lorem ipsum ' + (i + 1),
-		content:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+const initialTasks = [
+	{
+		id: 0,
+		title: 'Example Task',
+		content: 'Tap to mark as completed',
 		completed: false,
-	};
-});
+	},
+	{
+		id: 1,
+		title: 'Example Task',
+		content: "I'm completed",
+		completed: true,
+	},
+	{
+		id: 2,
+		title: 'Example Task',
+		content: 'Press the add button to create a new task',
+		completed: false,
+	},
+];
 const savedTheme = localStorage.getItem('theme');
 const savedTodos = JSON.parse(localStorage.getItem('todos'));
 const TodoApp = () => {
