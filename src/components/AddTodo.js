@@ -43,6 +43,8 @@ const AddTodo = ({ addTask, onEditCancel, editTask, saveEditTask, theme, changeT
 	const taskTracker = clsx('task-tracker', theme);
 	const btn = clsx('btn', theme);
 	const themeBtn = clsx('theme-button', theme);
+	const edit = clsx('btn edit margin', theme);
+	const remove = clsx('btn cancel', theme);
 	return (
 		<div className="add-todo-container">
 			<div className="task-tracker-container">
@@ -62,10 +64,10 @@ const AddTodo = ({ addTask, onEditCancel, editTask, saveEditTask, theme, changeT
 				</div>
 				{editTask && (
 					<div>
-						<button className="btn edit margin" onClick={() => addEditedTodo(title, content)}>
+						<button className={edit} onClick={() => addEditedTodo(title, content)}>
 							Edit
 						</button>
-						<button className="btn cancel" onClick={onCancel}>
+						<button className={remove} onClick={onCancel}>
 							Cancel
 						</button>
 					</div>
