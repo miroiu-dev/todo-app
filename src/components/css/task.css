@@ -1,81 +1,81 @@
 :root {
-  --remove-btn-color: #ca0b00;
-  --edit-btn-color: #f0d500;
-  --textColorTask: #f4f1fa;
+	--remove-btn-color: #ca0b00;
+	--edit-btn-color: #f0d500;
+	--textColorTask: #f4f1fa;
 }
 
 .task-container:not(:last-child) {
-  border-bottom: 1px solid var(--inputHover);
-  margin-bottom: 20px;
+	border-bottom: 1px solid var(--inputHover);
+	margin-bottom: 20px;
 }
 .task-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  user-select: none;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	user-select: none;
 }
 .task-title {
-  color: var(--textColorTask);
+	color: var(--textColorTask);
 }
 .task-content {
-  overflow: hidden;
-  width: 960px;
+	overflow: hidden;
+	width: 960px;
 }
 .task-title.completed {
-  color: green;
+	color: green;
 }
 
 .task-container.completed {
-  border-bottom: 1px solid darkgreen !important;
+	border-bottom: 1px solid darkgreen !important;
 }
 
 .button {
-  border-radius: 4px;
-  padding: 6px;
-  background-color: transparent;
-  border: 1px solid dodgerblue;
-  color: var(--textColorTask);
-  cursor: pointer;
-  outline: none;
+	border-radius: 4px;
+	padding: 6px;
+	background-color: transparent;
+	border: 1px solid dodgerblue;
+	color: var(--textColorTask);
+	cursor: pointer;
+	outline: none;
 }
 
 .button.remove {
-  background-color: var(--remove-btn-color);
-  border: none;
-  margin-left: 9px;
+	background-color: var(--remove-btn-color);
+	border: none;
+	margin-left: 9px;
 }
 
 .button.edit {
-  border: 1px solid #662d91;
-  background: transparent;
-  transition: background-color 0.3s;
-  outline: none;
+	border: 1px solid #662d91;
+	background: transparent;
+	transition: background-color 0.3s;
+	outline: none;
 }
 
 .button.edit:hover {
-  background-color: #613dc1;
+	background-color: #613dc1;
 }
 
 .task-title.light {
-  --textColorTask: black;
+	--textColorTask: black;
 }
 
 .edit.light {
-  --textColorTask: black;
+	--textColorTask: black;
 }
 
 @media only screen and (max-width: 700px) {
-  .button.remove {
-    margin-left: 0;
-    width: 100%;
-    margin-top: 7px;
-  }
-  .button.edit {
-    width: 100%;
-  }
+	.button.remove {
+		margin-left: 0;
+		width: 100%;
+		margin: 7px 0;
+	}
+	.button.edit {
+		width: 100%;
+	}
 }
 @media only screen and (max-width: 1200px) {
-  .task-content {
-    max-width: 80%;
-  }
+	.task-content {
+		max-width: 80%;
+	}
 }

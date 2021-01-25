@@ -18,12 +18,12 @@ const AddTodo = ({ addTask, onEditCancel, editTask, saveEditTask, theme, changeT
 		setErrors({ ...errors, content: !e.target.value });
 	};
 	const addTodo = () => {
-		if (title.length > 0 && content.length > 0) {
+		if (title.trim() && content.trim()) {
 			addTask(title, content);
 			setTitle('');
 			setContent('');
 		}
-		setErrors({ title: title.length === 0, content: content.length === 0 });
+		setErrors({ title: !title.trim(), content: !content.trim() });
 	};
 
 	const onCancel = () => {

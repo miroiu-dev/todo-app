@@ -4,8 +4,6 @@ import AddTodo from './AddTodo';
 import clsx from 'clsx';
 import './css/todoapp.css';
 
-let counter = 3;
-
 const initialTasks = [
 	{
 		id: 0,
@@ -47,7 +45,7 @@ const TodoApp = () => {
 	}, [theme, tasks]);
 
 	const addTask = (title, content) => {
-		const newTask = { id: ++counter, title: title, content: content };
+		const newTask = { id: Math.floor(Math.random() * 1000), title: title, content: content };
 		setTasks([...tasks, newTask]);
 	};
 
