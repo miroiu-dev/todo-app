@@ -1,0 +1,45 @@
+:root {
+  --textColor: #f4f1fa;
+  --inputBackground: #1f222f;
+  --inputHeight: 34px;
+  --inputWidth: 100%;
+  --borderRadius: 3px;
+  --inputHover: #662d91;
+}
+
+.input {
+  margin: 10px 0;
+  display: block;
+}
+
+.label-box {
+  display: block;
+  color: var(--textColor);
+  font-size: 18px;
+}
+
+.text-box {
+  background-color: var(--inputBackground);
+  outline: none;
+  border: transparent;
+  border-radius: var(--borderRadius);
+  width: var(--inputWidth);
+  height: var(--inputHeight);
+  color: var(--textColor);
+  padding: 0 5px;
+}
+
+.text-box:focus {
+  border-bottom: 1px solid var(--inputHover);
+}
+.required {
+  border-bottom: 1px solid var(--remove-btn-color);
+}
+
+.text-box.light {
+  --inputBackground: #e9e3f4;
+  --textColor: black;
+}
+.label-box.light {
+  --textColor: black;
+}
