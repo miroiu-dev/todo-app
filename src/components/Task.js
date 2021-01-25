@@ -8,8 +8,8 @@ const Task = ({ task, onRemove, showCompleted, onEdit, theme }) => {
 	const title = clsx('task-title', theme);
 	const edit = clsx('edit', theme);
 	return (
-		<div className={`task-container ${completed}`} onDoubleClick={() => showCompleted(task.id)}>
-			<div className="task-content">
+		<div className={`task-container ${completed}`}>
+			<div className="task-content" onClick={() => showCompleted(task.id)}>
 				<h3 className={`${title} ${completed}`}>{task.title}</h3>
 				<p className={title}>{task.content}</p>
 			</div>

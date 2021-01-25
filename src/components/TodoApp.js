@@ -15,14 +15,15 @@ const initialTasks = Array.from({ length: 4 }).map((_, i) => {
 		completed: false,
 	};
 });
-
+const savedTheme = localStorage.getItem('theme');
+const savedTodos = JSON.parse(localStorage.getItem('todos'));
 const TodoApp = () => {
-	const [tasks, setTasks] = useState(initialTasks);
+	const [tasks, setTasks] = useState(savedTodos || initialTasks);
 	const [editTask, setEditTask] = useState(null);
 	const [finished, setFinished] = useState(false);
 	const [todo, setTodo] = useState(false);
 	const [all, setAll] = useState(true);
-	const [theme, setTheme] = useState('dark');
+	const [theme, setTheme] = useState(savedTheme || 'dark');
 
 	useEffect(() => {
 		if (theme == 'light') {
@@ -30,7 +31,9 @@ const TodoApp = () => {
 		} else {
 			document.body.style = ' background:var(--pagecolor)';
 		}
-	}, [theme]);
+		localStorage.setItem('theme', theme);
+		localStorage.setItem('todos', JSON.stringify(tasks));
+	}, [theme, tasks]);
 
 	const addTask = (title, content) => {
 		const newTask = { id: ++counter, title: title, content: content };
