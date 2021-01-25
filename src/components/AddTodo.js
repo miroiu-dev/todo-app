@@ -49,7 +49,7 @@ const AddTodo = ({ addTask, onEditCancel, editTask, saveEditTask, theme, changeT
 				<h2 className={taskTracker}>Task Tracker</h2>
 				<div className="btns-container-add">
 					{!editTask && (
-						<button className={themeBtn} onClick={changeTheme}>
+						<button className={themeBtn} onClick={changeTheme} aria-label="Switch theme">
 							{theme == 'dark' ? <LightThemeIcon /> : <DarkThemeIcon />}
 						</button>
 					)}

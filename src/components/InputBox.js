@@ -8,8 +8,10 @@ const InputBox = ({ label, value, onChange, hasError, theme }) => {
 	const labelBox = clsx('label-box', theme);
 	return (
 		<div className={css}>
-			<label className={labelBox}>{label}</label>
-			<input type="text" className={textBox} value={value} onChange={onChange} />
+			<label htmlFor={label} className={labelBox}>
+				{label}
+			</label>
+			<input id={label} type="text" className={textBox} value={value} onChange={onChange} />
 		</div>
 	);
 };
