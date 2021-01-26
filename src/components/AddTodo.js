@@ -46,7 +46,7 @@ const AddTodo = ({ addTask, onEditCancel, editTask, saveEditTask, theme, changeT
 	const edit = clsx('btn edit margin', theme);
 	const remove = clsx('btn cancel', theme);
 	return (
-		<div className="add-todo-container">
+		<div className="add-todo-container" onKeyPress={ev => ev.key === 'Enter' && addTodo()}>
 			<div className="task-tracker-container">
 				<h2 className={taskTracker}>Task Tracker</h2>
 				<div className="btns-container-add">
