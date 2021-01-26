@@ -70,7 +70,9 @@ const TodoApp = () => {
 	};
 
 	const saveEditTask = (id, title, content) => {
-		setTasks(tasks.map(task => (task.id == id ? { ...task, title: title, content: content } : task)));
+		setTasks(
+			tasks.map(task => (task.id == id ? { ...task, title: title, content: content, completed: false } : task))
+		);
 		setEditTask(null);
 	};
 

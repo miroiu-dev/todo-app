@@ -37,7 +37,7 @@ const TodoList = ({ tasks, onRemove, showCompleted, onEdit, byCompleted, byTodo,
 				))}
 			{filter.todo &&
 				tasks.map(task =>
-					task.completed == false ? (
+					!task.completed ? (
 						<Task
 							key={task.id}
 							task={task}
@@ -52,7 +52,7 @@ const TodoList = ({ tasks, onRemove, showCompleted, onEdit, byCompleted, byTodo,
 				)}
 			{filter.completed &&
 				tasks.map(task =>
-					task.completed == true ? (
+					task.completed ? (
 						<Task
 							key={task.id}
 							task={task}
