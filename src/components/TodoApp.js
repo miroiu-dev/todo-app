@@ -29,9 +29,11 @@ const savedTodos = JSON.parse(localStorage.getItem('todos'));
 const TodoApp = () => {
 	const [tasks, setTasks] = useState(savedTodos || initialTasks);
 	const [editTask, setEditTask] = useState(null);
-	const [finished, setFinished] = useState(false);
-	const [todo, setTodo] = useState(false);
-	const [all, setAll] = useState(true);
+	const [filter, setFilter] = useState({
+		completed: false,
+		todo: false,
+		all: true,
+	});
 	const [theme, setTheme] = useState(savedTheme || 'dark');
 
 	useEffect(() => {
@@ -78,19 +80,13 @@ const TodoApp = () => {
 		setTitle('');
 	};
 	const byCompleted = () => {
-		setFinished(true);
-		setTodo(false);
-		setAll(false);
+		setFilter({ ...filter, todo: false, all: false, completed: true });
 	};
 	const byTodo = () => {
-		setTodo(true);
-		setFinished(false);
-		setAll(false);
+		setFilter({ ...filter, todo: true, all: false, completed: false });
 	};
 	const byAll = () => {
-		setAll(true);
-		setTodo(false);
-		setFinished(false);
+		setFilter({ ...filter, todo: false, all: true, completed: false });
 	};
 
 	const changeTheme = () => {
@@ -123,10 +119,8 @@ const TodoApp = () => {
 					onEdit={showEdit}
 					byCompleted={byCompleted}
 					byTodo={byTodo}
-					todo={todo}
-					finished={finished}
 					byAll={byAll}
-					all={all}
+					filter={filter}
 					theme={theme}
 				/>
 			)}

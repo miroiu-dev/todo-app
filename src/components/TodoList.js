@@ -3,24 +3,12 @@ import Task from './Task';
 import Button from './Button';
 import './css/todolist.css';
 import clsx from 'clsx';
-const TodoList = ({
-	tasks,
-	onRemove,
-	showCompleted,
-	onEdit,
-	byCompleted,
-	byTodo,
-	todo,
-	finished,
-	byAll,
-	all,
-	theme,
-}) => {
+const TodoList = ({ tasks, onRemove, showCompleted, onEdit, byCompleted, byTodo, byAll, filter, theme }) => {
 	const taskList = clsx('task-list-container', theme);
-	const filter = clsx('filter', theme);
+	const filterButtons = clsx('filter', theme);
 	return (
 		<div className={taskList}>
-			<div className={filter}>
+			<div className={filterButtons}>
 				<div className="filter-content">
 					<h3>Filter by:</h3>
 					<div className="filter-btn-container">
@@ -36,7 +24,7 @@ const TodoList = ({
 					</div>
 				</div>
 			</div>
-			{all &&
+			{filter.all &&
 				tasks.map(task => (
 					<Task
 						key={task.id}
@@ -47,7 +35,7 @@ const TodoList = ({
 						theme={theme}
 					/>
 				))}
-			{todo &&
+			{filter.todo &&
 				tasks.map(task =>
 					task.completed == false ? (
 						<Task
@@ -62,7 +50,7 @@ const TodoList = ({
 						<></>
 					)
 				)}
-			{finished &&
+			{filter.completed &&
 				tasks.map(task =>
 					task.completed == true ? (
 						<Task
