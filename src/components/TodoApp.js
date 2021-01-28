@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
+import { ThemeContext } from '../context/ThemeContext';
 import clsx from 'clsx';
 import './css/todoapp.css';
 
@@ -24,9 +25,8 @@ const initialTasks = [
 		completed: false,
 	},
 ];
-const savedTheme = localStorage.getItem('theme');
 const savedTodos = JSON.parse(localStorage.getItem('todos'));
-const TodoApp = () => {
+const TodoApp = ({ toggleTheme }) => {
 	const [tasks, setTasks] = useState(savedTodos || initialTasks);
 	const [editTask, setEditTask] = useState(null);
 	const [filter, setFilter] = useState({
@@ -34,17 +34,12 @@ const TodoApp = () => {
 		todo: false,
 		all: true,
 	});
-	const [theme, setTheme] = useState(savedTheme || 'dark');
+
+	const theme = useContext(ThemeContext);
 
 	useEffect(() => {
-		if (theme == 'light') {
-			document.body.style = 'background:var(--pagecolorLight)';
-		} else {
-			document.body.style = ' background:var(--pagecolor)';
-		}
-		localStorage.setItem('theme', theme);
 		localStorage.setItem('todos', JSON.stringify(tasks));
-	}, [theme, tasks]);
+	}, [tasks]);
 
 	const addTask = (title, content) => {
 		const newTask = { id: Math.floor(Math.random() * 1000), title: title, content: content };
@@ -91,14 +86,6 @@ const TodoApp = () => {
 		setFilter({ ...filter, todo: false, all: true, completed: false });
 	};
 
-	const changeTheme = () => {
-		if (theme === 'light') {
-			setTheme('dark');
-		} else {
-			setTheme('light');
-		}
-	};
-
 	const containerClass = clsx('container', theme);
 	return (
 		<div className={containerClass}>
@@ -109,9 +96,7 @@ const TodoApp = () => {
 				editTask={editTask}
 				saveEditTask={saveEditTask}
 				onEditCancel={onEditCancel}
-				theme={theme}
-				setTheme={setTheme}
-				changeTheme={changeTheme}
+				changeTheme={toggleTheme}
 			/>
 			{tasks.length > 0 && (
 				<TodoList
@@ -123,7 +108,6 @@ const TodoApp = () => {
 					byTodo={byTodo}
 					byAll={byAll}
 					filter={filter}
-					theme={theme}
 				/>
 			)}
 		</div>

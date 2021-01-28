@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import InputBox from './InputBox';
 import './css/addtodo.css';
 import clsx from 'clsx';
 import { FaMoon as DarkThemeIcon, FaSun as LightThemeIcon } from 'react-icons/fa';
+import { ThemeContext } from '../context/ThemeContext';
 
-const AddTodo = ({ addTask, onEditCancel, editTask, saveEditTask, theme, changeTheme }) => {
+const AddTodo = ({ addTask, onEditCancel, editTask, saveEditTask, changeTheme }) => {
 	const [title, setTitle] = useState(editTask ? editTask.title : '');
 	const [content, setContent] = useState(editTask ? editTask.content : '');
 	const [errors, setErrors] = useState({ title: false, content: false });
+
+	const theme = useContext(ThemeContext);
 
 	const onChangeTitle = e => {
 		setTitle(e.target.value);
@@ -74,14 +77,8 @@ const AddTodo = ({ addTask, onEditCancel, editTask, saveEditTask, theme, changeT
 				)}
 			</div>
 			<div className="todo-create-container">
-				<InputBox label="Title:" value={title} onChange={onChangeTitle} hasError={errors.title} theme={theme} />
-				<InputBox
-					label="Todo:"
-					value={content}
-					onChange={onChangeContent}
-					hasError={errors.content}
-					theme={theme}
-				/>
+				<InputBox label="Title:" value={title} onChange={onChangeTitle} hasError={errors.title} />
+				<InputBox label="Todo:" value={content} onChange={onChangeContent} hasError={errors.content} />
 			</div>
 		</div>
 	);

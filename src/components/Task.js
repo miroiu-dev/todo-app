@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from './Button';
 import clsx from 'clsx';
 import './css/task.css';
+import { ThemeContext } from '../context/ThemeContext';
 
-const Task = ({ task, onRemove, showCompleted, onEdit, theme }) => {
+const Task = ({ task, onRemove, showCompleted, onEdit }) => {
+	const theme = useContext(ThemeContext);
 	const completed = task.completed ? 'completed' : '';
 	const title = clsx('task-title', theme);
 	const edit = clsx('edit', theme);

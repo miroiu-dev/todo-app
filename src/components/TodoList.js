@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Task from './Task';
 import Button from './Button';
 import './css/todolist.css';
 import clsx from 'clsx';
-const TodoList = ({ tasks, onRemove, showCompleted, onEdit, byCompleted, byTodo, byAll, filter, theme }) => {
+import { ThemeContext } from '../context/ThemeContext';
+
+const applyFilter = (tasks, filter) => {
+	if (filter.completed) {
+		return tasks.filter(t => t.completed);
+	}
+
+	if (filter.todo) {
+		return tasks.filter(t => !t.completed);
+	}
+
+	return tasks;
+};
+
+const TodoList = ({ tasks, onRemove, showCompleted, onEdit, byCompleted, byTodo, byAll, filter }) => {
+	const theme = useContext(ThemeContext);
 	const taskList = clsx('task-list-container', theme);
 	const filterButtons = clsx('filter', theme);
+
+	const filteredTasks = applyFilter(tasks, filter);
+
 	return (
 		<div className={taskList}>
 			<div className={filterButtons}>
@@ -24,47 +42,9 @@ const TodoList = ({ tasks, onRemove, showCompleted, onEdit, byCompleted, byTodo,
 					</div>
 				</div>
 			</div>
-			{filter.all &&
-				tasks.map(task => (
-					<Task
-						key={task.id}
-						task={task}
-						onRemove={onRemove}
-						showCompleted={showCompleted}
-						onEdit={onEdit}
-						theme={theme}
-					/>
-				))}
-			{filter.todo &&
-				tasks.map(task =>
-					!task.completed ? (
-						<Task
-							key={task.id}
-							task={task}
-							onRemove={onRemove}
-							showCompleted={showCompleted}
-							onEdit={onEdit}
-							theme={theme}
-						/>
-					) : (
-						<></>
-					)
-				)}
-			{filter.completed &&
-				tasks.map(task =>
-					task.completed ? (
-						<Task
-							key={task.id}
-							task={task}
-							onRemove={onRemove}
-							showCompleted={showCompleted}
-							onEdit={onEdit}
-							theme={theme}
-						/>
-					) : (
-						<></>
-					)
-				)}
+			{filteredTasks.map(task => (
+				<Task key={task.id} task={task} onRemove={onRemove} showCompleted={showCompleted} onEdit={onEdit} />
+			))}
 		</div>
 	);
 };
