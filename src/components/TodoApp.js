@@ -65,9 +65,7 @@ const TodoApp = ({ toggleTheme }) => {
 	};
 
 	const saveEditTask = (id, title, content) => {
-		setTasks(
-			tasks.map(task => (task.id == id ? { ...task, title: title, content: content, completed: false } : task))
-		);
+		setTasks(tasks.map(task => (task.id == id ? { ...task, title: title, content: content } : task)));
 		setEditTask(null);
 	};
 
