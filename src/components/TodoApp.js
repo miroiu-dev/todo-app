@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
+
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 import { ThemeContext } from '../context/ThemeContext';
 import clsx from 'clsx';
 import './css/todoapp.css';
+import axios from 'axios';
 
 const initialTasks = [
 	{
@@ -25,15 +27,22 @@ const initialTasks = [
 		completed: false,
 	},
 ];
+
 const savedTodos = JSON.parse(localStorage.getItem('todos'));
 const TodoApp = ({ toggleTheme }) => {
-	const [tasks, setTasks] = useState(savedTodos || initialTasks);
+	const [tasks, setTasks] = useState(savedTodos);
 	const [editTask, setEditTask] = useState(null);
 	const [filter, setFilter] = useState({
 		completed: false,
 		todo: false,
 		all: true,
 	});
+	useEffect(async () => {
+		if (!savedTodos) {
+			const todosResponse = await axios('https://jsonplaceholder.typicode.com/todos');
+			setTasks(todosResponse.data.slice(0, 8).map(todo => ({ ...todo, content: todo.title })));
+		}
+	}, []);
 
 	const theme = useContext(ThemeContext);
 
