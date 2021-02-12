@@ -18,11 +18,7 @@ export default function App() {
 	const [theme, setTheme] = useState(savedTheme || 'dark');
 
 	useEffect(() => {
-		if (theme == 'light') {
-			document.body.style = 'background:var(--pagecolorLight)';
-		} else {
-			document.body.style = ' background:var(--pagecolor)';
-		}
+		document.documentElement.setAttribute('data-theme', theme);
 		localStorage.setItem('theme', theme);
 	}, [theme]);
 

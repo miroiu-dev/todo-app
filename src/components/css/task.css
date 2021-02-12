@@ -1,9 +1,3 @@
-:root {
-	--remove-btn-color: #ca0b00;
-	--edit-btn-color: #f0d500;
-	--textColorTask: #f4f1fa;
-}
-
 .task-container:not(:last-child) {
 	border-bottom: 1px solid var(--inputHover);
 	margin-bottom: 20px;
@@ -15,7 +9,7 @@
 	user-select: none;
 }
 .task-title {
-	color: var(--textColorTask);
+	color: var(--textColor);
 }
 .task-content {
 	overflow: hidden;
@@ -34,7 +28,7 @@
 	padding: 6px;
 	background-color: transparent;
 	border: 1px solid dodgerblue;
-	color: var(--textColorTask);
+	color: var(--textColor);
 	cursor: pointer;
 	outline: none;
 }
@@ -43,6 +37,7 @@
 	background-color: var(--remove-btn-color);
 	border: none;
 	margin-left: 9px;
+	color: var(--textColorInverse);
 }
 
 .button.edit {
@@ -54,14 +49,6 @@
 
 .button.edit:hover {
 	background-color: #613dc1;
-}
-
-.task-title.light {
-	--textColorTask: black;
-}
-
-.edit.light {
-	--textColorTask: black;
 }
 
 @media only screen and (max-width: 700px) {

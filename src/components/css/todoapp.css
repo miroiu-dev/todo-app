@@ -1,21 +1,14 @@
-:root {
-  --containerBorder: steelblue;
-}
 .container {
-  max-width: 1200px;
-  margin: 30px auto;
-  overflow: auto;
-  min-height: 500px;
-  border: 1px solid var(--containerBorder);
-  padding: 28px;
-  border-radius: 5px;
+	max-width: 1200px;
+	margin: 30px auto;
+	overflow: auto;
+	min-height: 500px;
+	border: 1px solid var(--containerBorder);
+	padding: 28px;
+	border-radius: 5px;
 }
 @media only screen and (max-width: 600px) {
-  .container {
-    border: none;
-  }
-}
-
-.container.light {
-  --containerBorder: orangered;
+	.container {
+		border: none;
+	}
 }

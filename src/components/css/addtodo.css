@@ -1,8 +1,3 @@
-:root {
-	--usefulOrange: #fd5618;
-	--textColor: #f4f1fa;
-	--buttonRadius: 7px;
-}
 .add-todo-container {
 	margin-bottom: 60px;
 }
@@ -57,12 +52,7 @@
 .margin {
 	margin-left: 5px;
 }
-.task-tracker.light {
-	--textColor: black;
-}
-.btn.light {
-	--textColor: black;
-}
+
 .theme-button {
 	border-radius: 4px;
 	padding: 3px;
@@ -81,10 +71,4 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-.edit.light {
-	--textColor: black;
-}
-.remove.light {
-	--textColor: black;
 }
