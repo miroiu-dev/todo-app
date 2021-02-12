@@ -23,6 +23,7 @@
 .text-box:focus {
 	border-bottom: 1px solid var(--inputHover);
 }
+
 .required {
 	border-bottom: 1px solid var(--remove-btn-color);
 }

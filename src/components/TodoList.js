@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Task from './Task';
 import Button from './Button';
 import './css/todolist.css';
-import clsx from 'clsx';
-import { ThemeContext } from '../context/ThemeContext';
 
 const applyFilter = (tasks, filter) => {
 	if (filter.completed) {
@@ -18,15 +16,11 @@ const applyFilter = (tasks, filter) => {
 };
 
 const TodoList = ({ tasks, onRemove, showCompleted, onEdit, byCompleted, byTodo, byAll, filter }) => {
-	const theme = useContext(ThemeContext);
-	const taskList = clsx('task-list-container', theme);
-	const filterButtons = clsx('filter', theme);
-
 	const filteredTasks = applyFilter(tasks, filter);
 
 	return (
-		<div className={taskList}>
-			<div className={filterButtons}>
+		<div className="task-list-container">
+			<div className="filter">
 				<div className="filter-content">
 					<h3>Filter by:</h3>
 					<div className="filter-btn-container">

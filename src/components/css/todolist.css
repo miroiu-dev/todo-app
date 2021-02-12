@@ -3,36 +3,43 @@
 	background: var(--taskBackground);
 	border-radius: 7px;
 }
+
 .filter {
 	display: flex;
 	justify-content: flex-end;
 	margin-bottom: 30px;
 	color: var(--textColor);
 }
+
 .filter-content {
 	display: flex;
 }
+
 button.finished {
 	margin-left: 7px;
 	background: var(--finished);
 	border: 1px solid var(--finished);
 	color: var(--textColorInverse);
 }
+
 button.todo {
 	margin-left: 7px;
 	background: var(--todo);
 	border: 1px solid var(--todo);
 	color: var(--textColorInverse);
 }
+
 button.unfiltered {
 	margin-left: 7px;
 	background: var(--usefulOrange);
 	border: 1px solid var(--usefulOrange);
 	color: var(--textColorInverse);
 }
+
 .filter-btn-container {
 	margin-left: 18px;
 }
+
 @media only screen and (max-width: 600px) {
 	.button.finished {
 		margin-left: 7px;
