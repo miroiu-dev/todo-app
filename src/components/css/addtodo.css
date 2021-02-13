@@ -1,11 +1,7 @@
-:root {
-	--usefulOrange: #fd5618;
-	--textColor: #f4f1fa;
-	--buttonRadius: 7px;
-}
 .add-todo-container {
 	margin-bottom: 60px;
 }
+
 .todo-create-container {
 	margin: 10px 0;
 }
@@ -51,40 +47,34 @@
 .edit {
 	border: 1px solid #3ec300;
 }
+
 .edit:hover {
 	background: #3ec300;
 }
+
 .margin {
 	margin-left: 5px;
 }
-.task-tracker.light {
-	--textColor: black;
-}
-.btn.light {
-	--textColor: black;
-}
+
 .theme-button {
 	border-radius: 4px;
 	padding: 3px;
 }
+
 .theme-button {
 	background-color: transparent;
 	outline: none;
 	border: none;
 	font-size: 20px;
-	color: black;
-}
-.theme-button.dark {
 	color: yellow;
 }
+
+html[data-theme='light'] .theme-button {
+	color: black;
+}
+
 .btns-container-add {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-.edit.light {
-	--textColor: black;
-}
-.remove.light {
-	--textColor: black;
 }

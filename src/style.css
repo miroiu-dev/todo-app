@@ -1,15 +1,42 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
 :root {
-  --pagecolor: #242837;
-  --pagecolorLight: #f4f1fa;
+	--pagecolor: #242837;
+	--finished: #006400;
+	--todo: #662d91;
+
+	--textColorInverse: #f4f1fa;
+	--textColor: #f4f1fa;
+
+	--taskBackground: #1f222f;
+	--containerBorder: steelblue;
+	--remove-btn-color: #ca0b00;
+	--edit-btn-color: #f0d500;
+	--inputBackground: #1f222f;
+	--inputHeight: 34px;
+	--inputWidth: 100%;
+	--borderRadius: 3px;
+	--inputHover: #662d91;
+	--usefulOrange: #fd5618;
+	--buttonRadius: 7px;
 }
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+
+html[data-theme='light'] {
+	--textColor: black;
+	--inputBackground: #e9e3f4;
+	--containerBorder: orangered;
+	--taskBackground: #e9e3f4;
+	--pagecolor: #f4f1fa;
 }
+
+html,
 body {
-  font-family: "Poppins", sans-serif;
-  background: var(--pagecolor);
+	background-color: var(--pagecolor);
+	font-family: 'Poppins', sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
