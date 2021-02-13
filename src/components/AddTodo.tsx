@@ -4,8 +4,20 @@ import './css/addtodo.css';
 import { FaMoon as DarkThemeIcon, FaSun as LightThemeIcon } from 'react-icons/fa';
 
 const savedTheme = localStorage.getItem('theme');
+type Task = {
+	id: number;
+	title: string;
+	content: string;
+	completed: boolean;
+};
+type Props = {
+	addTask: (title: string, content: string) => void;
+	onEditCancel: () => void;
+	editTask: null | Task;
+	saveEditTask: (id: number, title: string, content: string) => void;
+};
 
-const AddTodo = ({ addTask, onEditCancel, editTask, saveEditTask }) => {
+const AddTodo: React.FC<Props> = ({ addTask, onEditCancel, editTask, saveEditTask }) => {
 	const [title, setTitle] = useState(editTask ? editTask.title : '');
 	const [content, setContent] = useState(editTask ? editTask.content : '');
 	const [errors, setErrors] = useState({ title: false, content: false });
@@ -21,11 +33,11 @@ const AddTodo = ({ addTask, onEditCancel, editTask, saveEditTask }) => {
 		setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
 	};
 
-	const onChangeTitle = e => {
+	const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setTitle(e.target.value);
 		setErrors({ ...errors, title: !e.target.value });
 	};
-	const onChangeContent = e => {
+	const onChangeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setContent(e.target.value);
 		setErrors({ ...errors, content: !e.target.value });
 	};
@@ -44,8 +56,8 @@ const AddTodo = ({ addTask, onEditCancel, editTask, saveEditTask }) => {
 		setContent('');
 	};
 
-	const addEditedTodo = (newTitle, newContent) => {
-		if (newTitle.length > 0 && newContent.length > 0) {
+	const addEditedTodo = (newTitle: string, newContent: string) => {
+		if (editTask && newTitle.length && newContent.length) {
 			saveEditTask(editTask.id, title, content);
 			setTitle('');
 			setContent('');

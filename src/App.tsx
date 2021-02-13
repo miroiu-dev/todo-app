@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 import TodoApp from './components/TodoApp';
 
-const version = Number.parseFloat(localStorage.getItem('version') || 0);
+const version = Number.parseFloat(localStorage.getItem('version') || '0');
 const newVersion = 1.2;
 
 if (version < newVersion) {
@@ -12,6 +12,7 @@ if (version < newVersion) {
 
 localStorage.setItem('version', JSON.stringify(newVersion));
 
-export default function App() {
+const App: React.FC = () => {
 	return <TodoApp />;
-}
+};
+export default App;

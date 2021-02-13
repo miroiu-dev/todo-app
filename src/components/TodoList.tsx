@@ -1,9 +1,31 @@
 import React from 'react';
-import Task from './Task';
+import TaskComponent from './Task';
 import Button from './Button';
 import './css/todolist.css';
 
-const applyFilter = (tasks, filter) => {
+type Task = {
+	id: number;
+	title: string;
+	content: string;
+	completed: boolean;
+};
+type Filter = {
+	completed: boolean;
+	todo: boolean;
+	all: boolean;
+};
+type Props = {
+	tasks: Task[];
+	onRemove: (id: number) => void;
+	showCompleted: (id: number) => void;
+	onEdit: (task: Task) => void;
+	byCompleted: () => void;
+	byTodo: () => void;
+	byAll: () => void;
+	filter: Filter;
+};
+
+const applyFilter = (tasks: Task[], filter: Filter) => {
 	if (filter.completed) {
 		return tasks.filter(t => t.completed);
 	}
@@ -15,7 +37,7 @@ const applyFilter = (tasks, filter) => {
 	return tasks;
 };
 
-const TodoList = ({ tasks, onRemove, showCompleted, onEdit, byCompleted, byTodo, byAll, filter }) => {
+const TodoList: React.FC<Props> = ({ tasks, onRemove, showCompleted, onEdit, byCompleted, byTodo, byAll, filter }) => {
 	const filteredTasks = applyFilter(tasks, filter);
 
 	return (
@@ -37,7 +59,13 @@ const TodoList = ({ tasks, onRemove, showCompleted, onEdit, byCompleted, byTodo,
 				</div>
 			</div>
 			{filteredTasks.map(task => (
-				<Task key={task.id} task={task} onRemove={onRemove} showCompleted={showCompleted} onEdit={onEdit} />
+				<TaskComponent
+					key={task.id}
+					task={task}
+					onRemove={onRemove}
+					showCompleted={showCompleted}
+					onEdit={onEdit}
+				/>
 			))}
 		</div>
 	);

@@ -4,34 +4,45 @@ import AddTodo from './AddTodo';
 import './css/todoapp.css';
 import axios from 'axios';
 
-const savedTodos = JSON.parse(localStorage.getItem('todos'));
+const savedTodos: Task[] | null = JSON.parse(localStorage.getItem('todos') || 'null');
+
+type Task = {
+	id: number;
+	title: string;
+	content: string;
+	completed: boolean;
+};
 
 const TodoApp = () => {
-	const [tasks, setTasks] = useState(savedTodos);
-	const [editTask, setEditTask] = useState(null);
+	const [tasks, setTasks] = useState<Task[]>(savedTodos || []);
+	const [editTask, setEditTask] = useState<null | Task>(null);
 	const [filter, setFilter] = useState({
 		completed: false,
 		todo: false,
 		all: true,
 	});
 
-	useEffect(async () => {
-		if (!savedTodos) {
-			const todosResponse = await axios('https://jsonplaceholder.typicode.com/todos');
-			setTasks(todosResponse.data.slice(0, 8).map(todo => ({ ...todo, content: todo.title })));
+	useEffect(() => {
+		async function fetchData() {
+			if (!savedTodos) {
+				const todosResponse = await axios('https://jsonplaceholder.typicode.com/todos');
+				setTasks(todosResponse.data.slice(0, 4).map((todo: Task) => ({ ...todo, content: todo.title })));
+			}
 		}
+		fetchData();
 	}, []);
 
 	useEffect(() => {
 		localStorage.setItem('todos', JSON.stringify(tasks));
 	}, [tasks]);
 
-	const addTask = (title, content) => {
-		const newTask = { id: Math.floor(Math.random() * 1000), title: title, content: content };
+	const addTask = (title: string, content: string) => {
+		const newTask = { id: Math.floor(Math.random() * 1000), title: title, content: content, completed: false };
+		console.log([...tasks, newTask]);
 		setTasks([...tasks, newTask]);
 	};
 
-	const removeTask = id => {
+	const removeTask = (id: number) => {
 		if (editTask && id === editTask.id) {
 			onEditCancel();
 		}
@@ -39,11 +50,11 @@ const TodoApp = () => {
 		setTasks(tasks.filter(task => task.id !== id));
 	};
 
-	const showCompleted = id => {
-		setTasks(tasks.map(task => (task.id == id ? { ...task, completed: !task.completed } : task)));
+	const showCompleted = (id: number) => {
+		setTasks(tasks.map(task => (task.id === id ? { ...task, completed: !task.completed } : task)));
 	};
 
-	const showEdit = task => {
+	const showEdit = (task: Task) => {
 		setEditTask(task);
 	};
 
@@ -51,15 +62,9 @@ const TodoApp = () => {
 		setEditTask(null);
 	};
 
-	const saveEditTask = (id, title, content) => {
-		setTasks(tasks.map(task => (task.id == id ? { ...task, title: title, content: content } : task)));
+	const saveEditTask = (id: number, title: string, content: string) => {
+		setTasks(tasks.map(task => (task.id === id ? { ...task, title: title, content: content } : task)));
 		setEditTask(null);
-	};
-
-	const onCancel = (setTitle, setContent) => {
-		setEditMode(false);
-		setContent('');
-		setTitle('');
 	};
 
 	const byCompleted = () => {
@@ -79,7 +84,6 @@ const TodoApp = () => {
 			<AddTodo
 				key={editTask && editTask.id}
 				addTask={addTask}
-				onCancel={onCancel}
 				editTask={editTask}
 				saveEditTask={saveEditTask}
 				onEditCancel={onEditCancel}
