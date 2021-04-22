@@ -33,11 +33,10 @@ html,
 body {
 	background-color: var(--pagecolor);
 	font-family: 'Poppins', sans-serif;
+	transition: 200ms;
 }
-
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	transition: 200ms;
 }
