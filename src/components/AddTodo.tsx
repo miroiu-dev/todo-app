@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import InputBox from './InputBox';
 import './css/addtodo.css';
-import {
-	FaMoon as DarkThemeIcon,
-	FaSun as LightThemeIcon,
-} from 'react-icons/fa';
 import { ToggleThemeButton } from './ToggleTheme';
 
 const savedTheme = localStorage.getItem('theme');
