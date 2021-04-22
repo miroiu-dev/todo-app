@@ -37,7 +37,16 @@ const applyFilter = (tasks: Task[], filter: Filter) => {
 	return tasks;
 };
 
-const TodoList: React.FC<Props> = ({ tasks, onRemove, showCompleted, onEdit, byCompleted, byTodo, byAll, filter }) => {
+const TodoList: React.FC<Props> = ({
+	tasks,
+	onRemove,
+	showCompleted,
+	onEdit,
+	byCompleted,
+	byTodo,
+	byAll,
+	filter,
+}) => {
 	const filteredTasks = applyFilter(tasks, filter);
 
 	return (
