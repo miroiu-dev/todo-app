@@ -1,6 +1,7 @@
 .task-container:not(:last-child) {
 	border-bottom: 1px solid var(--inputHover);
 	margin-bottom: 20px;
+	transition: 200ms;
 }
 
 .task-container {
@@ -9,6 +10,7 @@
 	align-items: center;
 	user-select: none;
 	margin-bottom: 10px;
+	transition: 200ms;
 }
 
 .task-title {

@@ -2,6 +2,7 @@
 	padding: 15px 20px;
 	background: var(--taskBackground);
 	border-radius: 7px;
+	transition: 200ms;
 }
 
 .filter {

@@ -1,12 +1,14 @@
 .input {
 	margin: 10px 0;
 	display: block;
+	transition: 200ms;
 }
 
 .label-box {
 	display: block;
 	color: var(--textColor);
 	font-size: 18px;
+	transition: 200ms;
 }
 
 .text-box {
@@ -18,12 +20,15 @@
 	height: var(--inputHeight);
 	color: var(--textColor);
 	padding: 0 5px;
+	transition: 200ms;
 }
 
 .text-box:focus {
 	border-bottom: 1px solid var(--inputHover);
+	transition: 200ms;
 }
 
 .required {
 	border-bottom: 1px solid var(--remove-btn-color);
+	transition: 200ms;
 }
